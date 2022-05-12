@@ -39,7 +39,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
     states.splice(states.findIndex(s => s.state === state), 1);
 
     if (ip !== (req.headers['x-forwarded-for'] || req.socket.remoteAddress) || !code) {
-        res.redirect("/");
+        res.redirect(process.env.REDIRECT_URL + "/");
         return;
     }
 
@@ -48,7 +48,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
     const {id, avatar, username, discriminator} = user;
 
     if (!await isTester(id)) {
-        res.redirect("/");
+        res.redirect(process.env.REDIRECT_URL + "/");
         return;
     }
 
@@ -64,7 +64,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
         maxAge: 1000 * 60 * 60 * 24
     });
 
-    res.redirect("/dashboard");
+    res.redirect(process.env.REDIRECT_URL + "/dashboard");
 });
 
 

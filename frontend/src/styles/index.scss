@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+html, body {
+  background: #111827;
+  color: #F9FAFB;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif !important;
+}
+
+.gradient-button {
+  border: none;
+  outline: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  flex-grow: 1;
+  border-radius: 50px;
+  padding: 0.8rem;
+  background: linear-gradient(326deg, rgba(37,99,235,1) 0%, rgba(59,130,246,1) 100%);
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: auto !important;
+  &:hover {
+    background: rgb(33, 86, 201) none;
+  }
+  &:active {
+    background: rgb(36, 94, 220) none;
+  }
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  input {
+    outline: none;
+    border-radius: 5px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #334155;
+    border: rgba(255, 255, 255, 0.1) 1px solid;
+  }
+}

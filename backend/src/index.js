@@ -28,7 +28,8 @@ require("./middlewares/error-handling")(app);
 
 async function start() {
     // the following lines make sure that the database is connected and all tables are created - if they don't exist
-    await database.query("CREATE TABLE IF NOT EXISTS `users` (`id` bigint primary key, `username` varchar(255), `avatar` text)");
+    await database.query("CREATE TABLE IF NOT EXISTS `users` (`id` bigint primary key, `username` varchar(255), `avatar` text, `is_admin` tinyint(1) default 0)");
+    await database.query("CREATE TABLE IF NOT EXISTS `events` (`id` int primary key auto_increment, `scheduled_at` datetime, `goes_until` datetime, `theme` varchar(255), `teams_allowed` tinyint(1))");
 
     // the following line makes sure that the bot is connected
     await bot.startBot();
