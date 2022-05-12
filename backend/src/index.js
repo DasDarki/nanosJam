@@ -22,6 +22,7 @@ app.use(require("./middlewares/auth"));
 // here the routes will be added to the app
 app.use("/auth", require("./routes/auth"));
 app.use("/user", require("./routes/user"));
+app.use("/event", require("./routes/event"));
 
 // this middleware must be at the end of the chain
 require("./middlewares/error-handling")(app);

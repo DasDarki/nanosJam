@@ -39,7 +39,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
     states.splice(states.findIndex(s => s.state === state), 1);
 
     if (ip !== (req.headers['x-forwarded-for'] || req.socket.remoteAddress) || !code) {
-        res.redirect(process.env.REDIRECT_URL + "/");
+        res.redirect(process.env.REDIRECT_URL);
         return;
     }
 
@@ -48,7 +48,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
     const {id, avatar, username, discriminator} = user;
 
     if (!await isTester(id)) {
-        res.redirect(process.env.REDIRECT_URL + "/");
+        res.redirect(process.env.REDIRECT_URL);
         return;
     }
 
@@ -58,13 +58,8 @@ router.get("/callback", async (req, res) => { // here the user will land after s
     }
 
     const atk = await jwt.generateJwt(id);
-    res.cookie("nanosJam_ATK", atk, { // set a cookie with the user's access token as secure http only cookie
-        secure: process.env.NODE_ENV === "production",
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24
-    });
 
-    res.redirect(process.env.REDIRECT_URL + "/dashboard");
+    res.redirect(process.env.REDIRECT_URL + "login/success?atk=" + atk);
 });
 
 

@@ -3,7 +3,7 @@ const {decodeJwt} = require("../utils/jwt");
 
 module.exports = async (req, res, next) => {
     try {
-        const atk = req.cookies.nanosJam_ATK;
+        const atk = req.headers.authorization?.split(" ")[1];
 
         if (!atk) {
             next();
