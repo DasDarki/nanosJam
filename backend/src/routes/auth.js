@@ -59,7 +59,7 @@ router.get("/callback", async (req, res) => { // here the user will land after s
 
     const atk = await jwt.generateJwt(id);
 
-    res.redirect(process.env.REDIRECT_URL + "login/success?atk=" + atk);
+    res.redirect(process.env.REDIRECT_URL + "login-success?atk=" + atk);
 });
 
 

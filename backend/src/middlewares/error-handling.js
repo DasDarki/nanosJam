@@ -8,7 +8,7 @@ module.exports = (app) => {
 
         res.status(status).json({
             message: error.message,
-            stack: process.env.NODE_ENV === "PRODUCTION" ? undefined : error.stack
+            stack: process.env.MODE === "PRODUCTION" ? undefined : error.stack
         });
     })
 };

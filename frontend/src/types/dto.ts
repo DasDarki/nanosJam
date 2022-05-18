@@ -1,3 +1,5 @@
+import {DateTime} from "luxon";
+
 export interface User {
   id: number;
   username: string;
@@ -8,7 +10,9 @@ export interface User {
 export interface GameJamEvent {
   id: number;
   theme?: string;
-  scheduledAt: Date;
-  goesUntil: Date;
+  scheduledAt: DateTime;
+  submissionGoesUntil: DateTime;
+  goesUntil: DateTime;
   teamsAllowed: boolean;
+  resultsShown: boolean;
 }

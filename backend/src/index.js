@@ -15,6 +15,7 @@ app.use(helmet());
 app.use(cors({
     origin: process.env.CORS_ALLOWED_ORIGINS
 }));
+app.use(express.json());
 
 // this is for the authentication of the user
 app.use(require("./middlewares/auth"));
@@ -30,7 +31,7 @@ require("./middlewares/error-handling")(app);
 async function start() {
     // the following lines make sure that the database is connected and all tables are created - if they don't exist
     await database.query("CREATE TABLE IF NOT EXISTS `users` (`id` bigint primary key, `username` varchar(255), `avatar` text, `is_admin` tinyint(1) default 0)");
-    await database.query("CREATE TABLE IF NOT EXISTS `events` (`id` int primary key auto_increment, `scheduled_at` datetime, `goes_until` datetime, `theme` varchar(255), `teams_allowed` tinyint(1))");
+    await database.query("CREATE TABLE IF NOT EXISTS `events` (`id` int primary key auto_increment, `scheduled_at` varchar(255), `submission_goes_until` varchar(255), `goes_until` varchar(255), `theme` varchar(255), `teams_allowed` tinyint(1) default 0, `results_shown` tinyint(1) default 0)");
 
     // the following line makes sure that the bot is connected
     await bot.startBot();
